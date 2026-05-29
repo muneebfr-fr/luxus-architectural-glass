@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { ArrowLeft, Send, Phone, Mail, MapPin } from "lucide-react";
 import { useForm, ValidationError } from "@formspree/react";
-import { MetalButton } from "@/components/ui/liquid-glass-button";
+import { GoldGlassButton } from "@/components/ui/liquid-glass-button";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import PageTransition from "@/components/PageTransition";
@@ -64,9 +64,9 @@ const ContactPage = () => {
                 Your quote request has been received. Our team will review your requirements
                 and respond within one business day.
               </p>
-              <MetalButton as="a" href="/" className="px-10 py-4">
+              <GoldGlassButton as="a" href="/" className="px-10 py-4">
                 Back to Home
-              </MetalButton>
+              </GoldGlassButton>
             </motion.div>
           </div>
           <Footer />
@@ -270,13 +270,13 @@ const ContactPage = () => {
                 )}
 
                 {/* Submit */}
-                <MetalButton
+                <GoldGlassButton
                   type="submit"
                   disabled={state.submitting}
                   className="px-12 py-4 disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   {state.submitting ? "Sending…" : "Submit Quote Request"}
-                </MetalButton>
+                </GoldGlassButton>
               </motion.form>
 
               {/* Contact sidebar */}

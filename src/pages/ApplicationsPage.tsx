@@ -5,7 +5,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import PageTransition from "@/components/PageTransition";
 import { GooeyText } from "@/components/ui/gooey-text-morphing";
-import { MetalButton } from "@/components/ui/liquid-glass-button";
+import { GoldGlassButton } from "@/components/ui/liquid-glass-button";
 import residentialImg  from "@/assets/residential-glass.jpg";
 import commercialImg   from "@/assets/commercial-glass.jpg";
 import retailImg       from "@/assets/retail-glass.jpg";
@@ -200,9 +200,9 @@ const ApplicationsPage = () => {
             <p className="font-body text-primary-foreground/45 font-light max-w-sm mx-auto mb-10 text-[0.9rem]">
               We work across every sector. If it involves glass, we can engineer it.
             </p>
-            <MetalButton as="a" href="/contact" className="px-12 py-4">
+            <GoldGlassButton as="a" href="/contact" className="px-12 py-4">
               Start a Conversation
-            </MetalButton>
+            </GoldGlassButton>
           </motion.div>
         </section>
 

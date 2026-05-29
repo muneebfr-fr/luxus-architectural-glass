@@ -6,7 +6,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import PageTransition from "@/components/PageTransition";
 import { GooeyText } from "@/components/ui/gooey-text-morphing";
-import { MetalButton } from "@/components/ui/liquid-glass-button";
+import { GoldGlassButton } from "@/components/ui/liquid-glass-button";
 import overviewImg from "@/assets/overview-image.jpg";
 import mesh1 from "@/assets/mesh-glass-1.png";
 import mesh2 from "@/assets/mesh-glass-2.png";
@@ -159,9 +159,9 @@ const MeshGlassPage = () => {
                 <p className="font-body text-muted-foreground font-light leading-[1.85] text-[0.9375rem]">
                   If you can imagine it, we can build it.
                 </p>
-                <MetalButton as="a" href="/contact" className="mt-8 px-8 py-3.5">
+                <GoldGlassButton as="a" href="/contact" className="mt-8 px-8 py-3.5">
                   Explore Options <ArrowRight className="w-3.5 h-3.5" />
-                </MetalButton>
+                </GoldGlassButton>
               </motion.div>
             </div>
           </div>
@@ -293,9 +293,9 @@ const MeshGlassPage = () => {
             <p className="font-body text-primary-foreground/45 font-light max-w-sm mx-auto mb-10 text-[0.9rem]">
               Tell us your pattern, dimensions, and application — we'll handle the rest.
             </p>
-            <MetalButton as="a" href="/contact" className="px-12 py-4">
+            <GoldGlassButton as="a" href="/contact" className="px-12 py-4">
               Request Mesh Glass Quote
-            </MetalButton>
+            </GoldGlassButton>
           </motion.div>
         </section>
 

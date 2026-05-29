@@ -3,7 +3,7 @@ import { Menu, X } from "lucide-react";
 import { motion, AnimatePresence, useScroll, useSpring } from "framer-motion";
 import { Link, useLocation } from "react-router-dom";
 import logo from "@/assets/logo.png";
-import { MetalButton } from "@/components/ui/liquid-glass-button";
+import { GoldGlassButton } from "@/components/ui/liquid-glass-button";
 
 const navLinks = [
   { label: "Services",      href: "/services"     },
@@ -100,9 +100,9 @@ const Navbar = () => {
           {/* CTA + mobile toggle */}
           <div className="flex items-center gap-4">
             <div className="hidden md:block">
-              <MetalButton as="a" href="/contact" className="px-6 py-2.5 text-[10px]">
+              <GoldGlassButton as="a" href="/contact" className="px-6 py-2.5 text-[10px]">
                 Contact
-              </MetalButton>
+              </GoldGlassButton>
             </div>
 
             <button

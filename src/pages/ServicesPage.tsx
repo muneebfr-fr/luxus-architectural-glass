@@ -5,7 +5,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import PageTransition from "@/components/PageTransition";
 import { GooeyText } from "@/components/ui/gooey-text-morphing";
-import { MetalButton } from "@/components/ui/liquid-glass-button";
+import { GoldGlassButton } from "@/components/ui/liquid-glass-button";
 import laminatedImg from "@/assets/laminated-glass.jpg";
 import smartImg     from "@/assets/smart-glass.jpg";
 import fabricImg    from "@/assets/fabric-mesh-glass.jpg";
@@ -227,9 +227,9 @@ const ServicesPage = () => {
             <p className="font-body text-primary-foreground/45 font-light max-w-sm mx-auto mb-10 text-[0.9rem]">
               Tell us your requirements and we'll engineer the perfect solution.
             </p>
-            <MetalButton as="a" href="/contact" className="px-12 py-4">
+            <GoldGlassButton as="a" href="/contact" className="px-12 py-4">
               Request a Quote
-            </MetalButton>
+            </GoldGlassButton>
           </motion.div>
         </section>
 

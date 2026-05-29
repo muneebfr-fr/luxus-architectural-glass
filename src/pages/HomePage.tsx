@@ -9,7 +9,7 @@ import AnimatedStat from "@/components/AnimatedStat";
 import { LampContainer } from "@/components/ui/lamp";
 import RadialOrbitalTimeline from "@/components/ui/radial-orbital-timeline";
 import type { OrbitalItem } from "@/components/ui/radial-orbital-timeline";
-import { MetalButton } from "@/components/ui/liquid-glass-button";
+import { GoldGlassButton, ClearGlassButton } from "@/components/ui/liquid-glass-button";
 import { GlassEffect, GlassFilter } from "@/components/ui/liquid-glass";
 import logo from "@/assets/logo.png";
 
@@ -155,26 +155,13 @@ const HomePage = () => {
             transition={{ duration: 0.8, delay: 0.9 }}
             className="flex flex-col sm:flex-row gap-3 justify-center mb-12"
           >
-            <MetalButton as="a" href="/contact" className="px-10 py-3.5">
+            <GoldGlassButton as="a" href="/contact" className="px-10 py-3.5">
               Request a Consultation
-            </MetalButton>
+            </GoldGlassButton>
 
-            {/* Ghost glass button — uses Link for SPA nav */}
-            <Link
-              to="/services"
-              className="relative inline-flex items-center justify-center gap-2 overflow-hidden font-body text-[11px] tracking-[0.22em] uppercase font-medium px-10 py-3.5 text-gold transition-all duration-300 hover:bg-gold/10 focus:outline-none"
-              style={{
-                border: "1px solid hsl(38 72% 44% / 0.40)",
-                boxShadow: "inset 0 1px 0 hsl(38 72% 80% / 0.12)",
-              }}
-            >
-              <span
-                aria-hidden
-                className="pointer-events-none absolute inset-x-0 top-0 h-px"
-                style={{ background: "linear-gradient(90deg,transparent,hsl(38 72% 80%/0.28),transparent)" }}
-              />
+            <ClearGlassButton as="a" href="/services" className="px-10 py-3.5">
               Explore Solutions <ArrowRight className="w-3 h-3" />
-            </Link>
+            </ClearGlassButton>
           </motion.div>
 
           {/* Stats row */}
@@ -375,9 +362,9 @@ const HomePage = () => {
               <p className="font-body text-muted-foreground font-light max-w-sm mx-auto mb-10 text-[0.9rem] leading-relaxed">
                 Free consultations · Full technical documentation · Delivered on spec
               </p>
-              <MetalButton as="a" href="/contact" className="px-14 py-4">
+              <GoldGlassButton as="a" href="/contact" className="px-14 py-4">
                 Start Your Project
-              </MetalButton>
+              </GoldGlassButton>
             </motion.div>
           </div>
         </section>

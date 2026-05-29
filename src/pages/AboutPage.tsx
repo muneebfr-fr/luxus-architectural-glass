@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { ArrowRight, Shield, Zap, Users, Award } from "lucide-react";
-import { MetalButton } from "@/components/ui/liquid-glass-button";
+import { GoldGlassButton } from "@/components/ui/liquid-glass-button";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import PageTransition from "@/components/PageTransition";
@@ -313,9 +313,9 @@ const AboutPage = () => {
                     info@luxusglassusa.com
                   </a>
                 </div>
-                <MetalButton as="a" href="/contact" className="px-8 py-3.5">
+                <GoldGlassButton as="a" href="/contact" className="px-8 py-3.5">
                   Get in Touch <ArrowRight className="w-3.5 h-3.5" />
-                </MetalButton>
+                </GoldGlassButton>
               </motion.div>
 
               <motion.div
