@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import logo from "@/assets/logo.png";
+import { LiquidLogo } from "@/components/ui/liquid-logo";
 
 const InstagramIcon = () => (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.4} strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4">
@@ -26,7 +26,7 @@ const Footer = () => {
           {/* Brand */}
           <div className="md:col-span-1">
             <Link to="/" className="flex items-center gap-3 mb-5">
-              <img src={logo} alt="Luxus Architectural Glass" className="h-10 w-auto object-contain" />
+              <LiquidLogo size={72} />
               <span className="flex flex-col leading-none gap-0.5">
                 <span className="font-display gradient-gold-text font-semibold text-lg tracking-[0.22em] uppercase">Luxus</span>
                 <span className="font-body text-[8px] tracking-[0.38em] uppercase font-light text-gold-light/50">Architectural Glass</span>
