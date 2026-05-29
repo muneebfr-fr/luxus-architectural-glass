@@ -6,11 +6,11 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import PageTransition from "@/components/PageTransition";
 import AnimatedStat from "@/components/AnimatedStat";
-import { LampContainer } from "@/components/ui/lamp";
 import RadialOrbitalTimeline from "@/components/ui/radial-orbital-timeline";
 import type { OrbitalItem } from "@/components/ui/radial-orbital-timeline";
 import { GoldGlassButton, ClearGlassButton } from "@/components/ui/liquid-glass-button";
 import { GlassEffect, GlassFilter } from "@/components/ui/liquid-glass";
+import { ShaderAnimation } from "@/components/ui/shader-lines";
 import logo from "@/assets/logo.png";
 
 /* ── Orbital navigation data ─────────────────────────────────────── */
@@ -52,31 +52,12 @@ const stats = [
 const NoiseOverlay = () => (
   <div
     aria-hidden
-    className="pointer-events-none absolute inset-0 z-10 opacity-[0.022] mix-blend-overlay"
+    className="pointer-events-none absolute inset-0 z-[5] opacity-[0.028] mix-blend-overlay"
     style={{
       backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.80' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")`,
       backgroundSize: "256px 256px",
     }}
   />
-);
-
-/* ── Scroll cue ──────────────────────────────────────────────────── */
-const ScrollCue = () => (
-  <motion.div
-    initial={{ opacity: 0 }}
-    animate={{ opacity: 1 }}
-    transition={{ delay: 2.4, duration: 1 }}
-    className="flex flex-col items-center gap-2"
-  >
-    <motion.div
-      animate={{ y: [0, 8, 0] }}
-      transition={{ duration: 2.2, repeat: Infinity, ease: "easeInOut" }}
-      className="w-px h-10 bg-gradient-to-b from-gold/0 via-gold/45 to-gold/0"
-    />
-    <p className="font-body text-[9px] tracking-[0.38em] uppercase text-primary-foreground/25">
-      Scroll
-    </p>
-  </motion.div>
 );
 
 /* ── Page ────────────────────────────────────────────────────────── */
@@ -98,98 +79,146 @@ const HomePage = () => {
         <Navbar />
 
         {/* ════════════════════════════════════════════════════════
-            HERO — Lamp + content
+            HERO — Shader animation background
         ════════════════════════════════════════════════════════ */}
-        <LampContainer footerElement={<ScrollCue />}>
-          <NoiseOverlay />
+        <section className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden bg-primary">
 
-          {/* Logo */}
-          <motion.img
-            src={logo}
-            alt="Luxus Architectural Glass"
-            initial={{ opacity: 0, scale: 0.85 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1.1, delay: 0.15, ease: [0.25, 0.46, 0.45, 0.94] }}
-            className="h-20 md:h-24 w-auto mx-auto object-contain mb-6"
-            style={{ filter: "drop-shadow(0 0 40px hsl(38 72% 44% / 0.65))" }}
+          {/* Shader — absolute background layer */}
+          <ShaderAnimation />
+
+          {/* Overlay 1: overall darkness so text reads cleanly */}
+          <div className="absolute inset-0 z-[2] bg-primary/68" />
+
+          {/* Overlay 2: radial — darken edges, keep central glow alive */}
+          <div
+            className="absolute inset-0 z-[3]"
+            style={{
+              background:
+                "radial-gradient(ellipse 70% 65% at 50% 45%, transparent 0%, rgba(6,4,14,0.78) 100%)",
+            }}
           />
 
-          {/* Eyebrow */}
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            className="mb-5"
-          >
-            <span className="eyebrow-label text-gold/80">Architectural Glass Solutions</span>
-          </motion.div>
+          {/* Overlay 3: bottom fade into the next section */}
+          <div className="absolute bottom-0 left-0 right-0 z-[4] h-16 bg-gradient-to-t from-primary to-transparent" />
 
-          {/* Headline */}
-          <motion.h1
-            initial={{ opacity: 0, y: 28 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.55, ease: [0.25, 0.46, 0.45, 0.94] }}
-            className="font-display font-light text-primary-foreground text-center leading-[0.92] mb-5"
-            style={{ fontSize: "clamp(2.8rem, 8vw, 7rem)", letterSpacing: "-0.025em" }}
-          >
-            Luxury in Every
-            <br />
-            <span className="gradient-gold-shimmer font-medium italic">Layer</span>
-          </motion.h1>
+          {/* Film grain */}
+          <NoiseOverlay />
 
-          {/* Subhead */}
-          <motion.p
-            initial={{ opacity: 0, y: 18 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.9, delay: 0.75 }}
-            className="font-body text-primary-foreground/45 text-center max-w-[380px] mx-auto mb-9 font-light leading-[1.8] text-[0.9rem]"
-          >
-            Precision-engineered laminated glass for architects,
-            designers, and builders who demand uncompromising quality.
-          </motion.p>
+          {/* ── Hero content ──────────────────────────────────── */}
+          <div className="relative z-10 flex flex-col items-center text-center px-5 pt-24 pb-20 w-full max-w-3xl mx-auto">
 
-          {/* CTAs */}
-          <motion.div
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.9 }}
-            className="flex flex-col sm:flex-row gap-3 justify-center mb-12"
-          >
-            <GoldGlassButton as="a" href="/contact" className="px-10 py-3.5">
-              Request a Consultation
-            </GoldGlassButton>
+            {/* Logo */}
+            <motion.img
+              src={logo}
+              alt="Luxus Architectural Glass"
+              initial={{ opacity: 0, scale: 0.88 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 1.1, delay: 0.1, ease: [0.25, 0.46, 0.45, 0.94] }}
+              className="h-16 sm:h-20 w-auto mx-auto object-contain mb-7"
+              style={{ filter: "drop-shadow(0 0 36px hsl(38 72% 44% / 0.72))" }}
+            />
 
-            <ClearGlassButton as="a" href="/services" className="px-10 py-3.5">
-              Explore Solutions <ArrowRight className="w-3 h-3" />
-            </ClearGlassButton>
-          </motion.div>
+            {/* Thin gold rule */}
+            <motion.div
+              initial={{ scaleX: 0, opacity: 0 }}
+              animate={{ scaleX: 1, opacity: 1 }}
+              transition={{ duration: 0.8, delay: 0.35 }}
+              className="w-14 h-px bg-gradient-to-r from-transparent via-gold/60 to-transparent mb-6"
+            />
 
-          {/* Stats row */}
+            {/* Eyebrow */}
+            <motion.div
+              initial={{ opacity: 0, y: 8 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.45 }}
+              className="mb-6"
+            >
+              <span className="eyebrow-label text-gold/75">
+                Architectural Glass Solutions
+              </span>
+            </motion.div>
+
+            {/* Headline */}
+            <motion.h1
+              initial={{ opacity: 0, y: 32 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1, delay: 0.58, ease: [0.22, 0.61, 0.36, 1] }}
+              className="font-display font-light text-primary-foreground text-center leading-[0.9] mb-6 tracking-tight"
+              style={{ fontSize: "clamp(3rem, 9.5vw, 7.5rem)", letterSpacing: "-0.02em", textShadow: "0 2px 32px rgba(0,0,0,0.85)" }}
+            >
+              Luxury in Every
+              <br />
+              <em className="gradient-gold-shimmer not-italic font-semibold">
+                Layer
+              </em>
+            </motion.h1>
+
+            {/* Sub-headline */}
+            <motion.p
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.9, delay: 0.78 }}
+              className="font-body text-primary-foreground/55 text-center max-w-[360px] mx-auto mb-10 font-light leading-[1.82] text-[0.88rem] sm:text-[0.92rem]"
+              style={{ textShadow: "0 1px 18px rgba(0,0,0,0.9), 0 0 40px rgba(0,0,0,0.7)" }}
+            >
+              Precision-engineered laminated glass for architects,
+              designers, and builders who demand uncompromising quality.
+            </motion.p>
+
+            {/* CTAs */}
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.95 }}
+              className="flex flex-col sm:flex-row gap-3 justify-center w-full sm:w-auto mb-12"
+            >
+              <GoldGlassButton as="a" href="/contact" className="px-9 py-3.5 w-full sm:w-auto justify-center">
+                Request a Consultation
+              </GoldGlassButton>
+              <ClearGlassButton as="a" href="/services" className="px-9 py-3.5 w-full sm:w-auto justify-center">
+                Explore Solutions <ArrowRight className="w-3 h-3" />
+              </ClearGlassButton>
+            </motion.div>
+
+            {/* Stats */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 1, delay: 1.15 }}
+              className="flex flex-row justify-center divide-x divide-primary-foreground/10"
+            >
+              {stats.map((stat, i) => (
+                <div key={stat.label} className="flex flex-col items-center px-6 sm:px-9 py-1">
+                  <AnimatedStat
+                    value={stat.value}
+                    label={stat.label}
+                    delay={i * 200}
+                    className="flex flex-col items-center"
+                    valueClassName="text-xl sm:text-2xl md:text-3xl mb-0.5"
+                    labelClassName="text-[8px] sm:text-[9px] tracking-[0.26em] text-primary-foreground/36"
+                  />
+                </div>
+              ))}
+            </motion.div>
+          </div>
+
+          {/* Scroll cue */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 1, delay: 1.1 }}
-            className="flex flex-col sm:flex-row justify-center"
+            transition={{ delay: 2.2, duration: 1 }}
+            className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2"
           >
-            {stats.map((stat, i) => (
-              <div
-                key={stat.label}
-                className={`flex flex-col items-center px-8 py-3 ${
-                  i < stats.length - 1 ? "sm:border-r sm:border-primary-foreground/10" : ""
-                }`}
-              >
-                <AnimatedStat
-                  value={stat.value}
-                  label={stat.label}
-                  delay={i * 200}
-                  className="flex flex-col items-center"
-                  valueClassName="text-2xl md:text-3xl mb-1"
-                  labelClassName="text-[9px] tracking-[0.28em] text-primary-foreground/38"
-                />
-              </div>
-            ))}
+            <motion.div
+              animate={{ y: [0, 8, 0] }}
+              transition={{ duration: 2.2, repeat: Infinity, ease: "easeInOut" }}
+              className="w-px h-10 bg-gradient-to-b from-gold/0 via-gold/40 to-gold/0"
+            />
+            <p className="font-body text-[9px] tracking-[0.38em] uppercase text-primary-foreground/22">
+              Scroll
+            </p>
           </motion.div>
-        </LampContainer>
+        </section>
 
         {/* ════════════════════════════════════════════════════════
             ABOUT STRIP
